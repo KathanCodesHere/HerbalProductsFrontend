@@ -22,6 +22,7 @@ const Footer = () => {
           <p className="text-sm md:text-base mt-4 text-green-200 leading-relaxed max-w-sm">
             Reviving nature’s goodness — pure, organic, and sustainable wellness.
           </p>
+          <Link to='/dashboard'>Dashboard</Link>
         </div>
 
         {/* 🔗 Quick Links - Center */}
@@ -76,13 +77,13 @@ const Footer = () => {
               { icon: <FaInstagram />, link: "#" },
               { icon: <FaLinkedinIn />, link: "#" }
             ].map((social, index) => (
-              <a
+              <Link
                 key={index}
-                href={social.link}
+                to={social.link}
                 className="p-3 rounded-full bg-green-700 text-yellow-100 hover:bg-gradient-to-r from-yellow-300 to-green-600 hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
               >
                 {social.icon}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
