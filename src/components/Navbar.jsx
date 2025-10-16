@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
@@ -9,9 +10,11 @@ export default function Navbar() {
   return (
     <nav className="bg-green-700 text-white px-6 py-4 flex justify-between items-center shadow-lg sticky top-0 z-50">
       {/* Logo */}
+       <Link to="/" className="flex items-center space-x-2 hover:opacity-90">
       <h1 className="text-2xl font-extrabold tracking-wide text-white hover:text-green-200 transition-all duration-300">
         🌿 <span className="text-yellow-200 hover:text-yellow-400 transition-all duration-300">HerbalCare</span>
       </h1>
+      </Link>
 
       {/* Center Links */}
       <div className="hidden md:flex space-x-8">

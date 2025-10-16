@@ -40,7 +40,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/about"
+                to="/aboutus"
                 className="block text-green-100 hover:text-yellow-300 transition-all duration-300 hover:scale-105"
               >
                 About
@@ -56,7 +56,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/contact"
+                to="/contactus"
                 className="block text-green-100 hover:text-yellow-300 transition-all duration-300 hover:scale-105"
               >
                 Contact
