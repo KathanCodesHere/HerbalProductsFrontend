@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-
+import { Link } from "react-router-dom";
 const AboutUs = () => {
   return (
     <section className="bg-gradient-to-r from-green-50 via-lime-50 to-green-100 py-20 px-6 md:px-12 lg:px-24">
@@ -31,13 +31,13 @@ const AboutUs = () => {
             sulfates—just the healing touch of herbs.
           </p>
 
-          <a
-            href="/products"
+          <Link
+            to="/products"
             className="inline-block bg-green-700 text-white font-semibold px-8 py-3 rounded-full shadow-md
                        hover:bg-green-800 transition-all duration-300 hover:shadow-lg"
           >
             Explore Our Range
-          </a>
+          </Link>
         </motion.div>
 
         {/* 🌱 Right Image Grid */}

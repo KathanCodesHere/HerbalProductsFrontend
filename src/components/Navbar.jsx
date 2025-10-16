@@ -18,37 +18,36 @@ export default function Navbar() {
 
       {/* Center Links */}
       <div className="hidden md:flex space-x-8">
-        {["Products", "About Us", "Contact Us"].map((item) => (
-          <a
-            key={item}
-            href={`/${item.replace(/\s+/g, "").toLowerCase()}`}
-            className="relative px-3 py-2 rounded-lg font-medium transition-all duration-300
-                       hover:text-white hover:scale-105
-                       hover:bg-gradient-to-r from-green-600 to-yellow-400"
-          >
-            {item}
-          </a>
-        ))}
+      {["Products", "About Us", "Contact Us"].map((item) => (
+        <Link key={item}
+        to={`/${item.replace(/\s+/g, "").toLowerCase()}`}
+        className="relative px-3 py-2 rounded-lg font-medium transition-all duration-300
+               hover:text-white hover:scale-105
+               hover:bg-gradient-to-r from-green-600 to-yellow-400">
+        {item}
+        </Link>
+))}
+
       </div>
 
       {/* Right Side Links */}
       <div className="hidden md:flex space-x-6">
-        <a
-          href="/login"
+        <Link
+          to="/login"
           className="relative px-3 py-2 rounded-lg font-medium transition-all duration-300
                      hover:text-white hover:scale-105
                      hover:bg-gradient-to-r from-green-600 to-yellow-400"
         >
           Login
-        </a>
-        <a
-          href="/signup"
+        </Link>
+        <Link
+          to="/signup"
           className="relative px-3 py-2 rounded-lg font-medium transition-all duration-300
                      hover:text-white hover:scale-105
                      hover:bg-gradient-to-r from-green-600 to-yellow-400"
         >
           Signup
-        </a>
+        </Link>
       </div>
 
       {/* Hamburger for mobile */}
@@ -88,15 +87,15 @@ export default function Navbar() {
           >
             {["Products", "About Us", "Contact Us", "Login", "Signup"].map(
               (item) => (
-                <a
+                <Link
                   key={item}
-                  href={`/${item.replace(/\s+/g, "").toLowerCase()}`}
+                  to={`/${item.replace(/\s+/g, "").toLowerCase()}`}
                   className="w-4/5 text-center py-2 rounded-lg font-medium transition-all duration-300
                              hover:text-white hover:bg-gradient-to-r from-green-500 to-lime-400"
                   onClick={() => setIsOpen(false)}
                 >
                   {item}
-                </a>
+                </Link>
               )
             )}
           </motion.div>

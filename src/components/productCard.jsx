@@ -1,8 +1,16 @@
 // src/components/ProductCard.jsx
 import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    // navigate(`/product/${product.id}`);
+    navigate('/productsid');
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -12,7 +20,8 @@ const ProductCard = ({ product }) => {
         ease: "easeOut",
       }}
       viewport={{ once: true }}
-      className="bg-white rounded-2xl shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
+      onClick={handleCardClick}
+      className="bg-white rounded-2xl shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl cursor-pointer"
     >
       <div className="relative overflow-hidden">
         <motion.img
@@ -20,7 +29,7 @@ const ProductCard = ({ product }) => {
           alt={product.name}
           className="w-full h-56 object-cover rounded-t-2xl transition-transform duration-700 hover:scale-110"
           whileHover={{ rotate: 0.5, scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 120 }}
+          transition={{ type: 'spring', stiffness: 120 }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
       </div>
@@ -40,6 +49,10 @@ const ProductCard = ({ product }) => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={(e) => {
+              e.stopPropagation(); // stops card click
+              navigate(`/product/${product.id}`);
+            }}
             className="bg-green-600 text-white py-1 px-4 rounded-lg hover:bg-green-700 transition-all"
           >
             Buy Now
