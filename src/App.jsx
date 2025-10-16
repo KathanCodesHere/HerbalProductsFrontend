@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import Products from "./pages/Products";
-import About from "./pages/About"
-import Contact from "./pages/Contact";
-import ParticularProducts from "./pages/ParticularProducts";
-import Dashboard from "./pages/Dashboard";
+import Home from "./components/pages/Home";
+import Login from "./components/pages/Login";
+import Signup from "./components/pages/Signup";
+import Products from "./components/pages/Products";
+import Contact from "./components/pages/Contact";
+import ParticularProducts from "./components/pages//ParticularProducts";
+import Dashboard from "./components/pages/Dashboard";
+import About from './components/pages/About'
 
 export default function App() {
   return (
