@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Signup = () => {
@@ -105,9 +106,9 @@ const Signup = () => {
 
         <p className="text-center text-sm text-gray-600 mt-6">
           Already have an account?{" "}
-          <a href="#" className="text-green-700 font-medium hover:underline">
+          <Link to="/login" className="text-green-700 font-medium hover:underline">
             Login here
-          </a>
+          </Link>
         </p>
       </motion.div>
     </div>
