@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom"; // For page navigation
 
 const Hero = () => {
   const images = [
-    "https://i.pinimg.com/736x/27/0a/43/270a4364058dcdd62781c8be950cccd7.jpg",
+    // "https://i.pinimg.com/736x/27/0a/43/270a4364058dcdd62781c8be950cccd7.jpg",
     "https://i.pinimg.com/1200x/a9/cc/51/a9cc5175db9327a5b5065de33cdde151.jpg",
-    "https://i.pinimg.com/1200x/77/10/ad/7710adbd47c5893e0042b2b97b872273.jpg",
+    // "https://i.pinimg.com/1200x/77/10/ad/7710adbd47c5893e0042b2b97b872273.jpg",
     "https://i.pinimg.com/1200x/1f/55/f6/1f55f612aa2d23dfb68b474b5ba728c2.jpg",
     "https://i.pinimg.com/1200x/3a/ca/17/3aca1769221d7f8e1bacb8d969df27cc.jpg",
   ];
@@ -47,11 +47,13 @@ const Hero = () => {
 
       {/* Highlighted Text Box */}
       <div className="relative p-10 rounded-2xl text-white max-w-xl mx-auto">
-        <h1 className="text-5xl font-extrabold text-yellow-300 drop-shadow-[0_2px_5px_rgba(0,0,0,0.8)]">
-          Welcome to Nature’s Essence 🌿
-        </h1>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-yellow-300 drop-shadow-[0_2px_5px_rgba(0,0,0,0.8)]">
+  Jadoo Ayurveda Ka, Pyaar Nature Ka 💚
+</h1>
+
+
         <p className="mt-4 text-xl font-medium text-yellow-100 drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)]">
-          100% Herbal Shampoos made with love and purity.
+          100% Herbal Haircare for strong, silky, and nourished hair — naturally!
         </p>
         <button
           onClick={handleShopNow}

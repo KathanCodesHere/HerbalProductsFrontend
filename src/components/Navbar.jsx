@@ -12,7 +12,7 @@ export default function Navbar() {
       {/* Logo */}
        <Link to="/" className="flex items-center space-x-2 hover:opacity-90">
       <h1 className="text-2xl font-extrabold tracking-wide text-white hover:text-green-200 transition-all duration-300">
-        🌿 <span className="text-yellow-200 hover:text-yellow-400 transition-all duration-300">HerbalCare</span>
+        🌿 <span className="text-yellow-200 hover:text-yellow-400 transition-all duration-300">Kesh Herbal</span>
       </h1>
       </Link>
 
