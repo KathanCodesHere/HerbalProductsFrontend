@@ -8,13 +8,16 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="bg-green-700 text-white px-6 py-4 flex justify-between items-center shadow-lg sticky top-0 z-50">
+    <nav className="bg-gray-100 text-[#023918] px-6 py-4 flex justify-between items-center shadow-lg  top-0 z-50 sticky">
       {/* Logo */}
-       <Link to="/" className="flex items-center space-x-2 hover:opacity-90">
-      <h1 className="text-2xl font-extrabold tracking-wide text-white hover:text-green-200 transition-all duration-300">
-        🌿 <span className="text-yellow-200 hover:text-yellow-400 transition-all duration-300">Kesh Herbal</span>
-      </h1>
-      </Link>
+<Link to="/" className="flex items-center space-x-2 hover:opacity-90 transition-all duration-300">
+  <img
+    src="/logos/logo.png" // 👈 your logo path (put your image in public/assets or src/assets)
+    alt="Kesh Herbal Logo"
+    className="h-10 w-auto sm:h-12 md:h-14 object-contain"
+  />
+</Link>
+
 
       {/* Center Links */}
       <div className="hidden md:flex space-x-8">
@@ -52,7 +55,7 @@ export default function Navbar() {
 
       {/* Hamburger for mobile */}
       <button
-        className="md:hidden flex items-center text-yellow-200 hover:text-yellow-400 transition-all duration-300"
+        className="md:hidden flex items-center text-[#023918] hover:text-yellow-400 transition-all duration-300"
         onClick={toggleMenu}
       >
         <svg
@@ -83,7 +86,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="absolute top-16 left-0 w-full bg-green-800 flex flex-col items-center space-y-4 py-6 shadow-lg md:hidden"
+            className="absolute top-16 left-0 w-full bg-gray-100 flex flex-col items-center space-y-4 py-6 shadow-lg md:hidden"
           >
             {["Products", "About Us", "Contact Us", "Login", "Signup"].map(
               (item) => (

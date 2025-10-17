@@ -1,5 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 @import "tailwindcss";
 
+
+@theme {
+  --font-jose: "Josefin Sans", sans-serif;
+   --font-poppins: "Poppins", sans-serif;
+}
 :root {
   --color-primary: #2E7D32;     /* Herbal Green */
   --color-secondary: #81C784;   /* Light Green */
@@ -15,4 +23,8 @@
   --color-accent: #FFC107;
   --color-bg: #121212;
   --color-text: #E0E0E0;
+}
+
+body {
+  font-family: var(--font-jose);
 }
