@@ -1,5 +1,6 @@
 import React from "react";
 import { FaPhoneAlt, FaRegEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
 const Contact = () => {
@@ -16,20 +17,11 @@ const Contact = () => {
           viewport={{ once: true }}
         >
           <img
-            src="https://plus.unsplash.com/premium_photo-1731696604013-52ccf4c49bd9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXl1cnZlZGljJTIwaGVyYmFsJTIwcHJvZHVjdHN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600"
-            alt="Herbal Nature 1"
-            className="rounded-2xl shadow-lg w-full h-65 max-w-sm object-cover hover:scale-105 transition-transform duration-500"
-          />
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxNJfUzcmOHCqAmu1817lriR-RLHO9HBgn2w&s"
+            src="/product/05_page-0001.jpg"
             alt="Herbal Nature 2"
-            className="rounded-2xl shadow-lg w-full h-65 max-w-sm object-cover hover:scale-105 transition-transform duration-500"
+            className="rounded-2xl shadow-lg w-full h-100 max-w-sm object-cover hover:scale-105 transition-transform duration-500"
           />
-          <img
-            src="https://images.unsplash.com/photo-1677599082447-6549af4c5454?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGF5dXJ2ZWRpYyUyMGhlcmJhbCUyMHByb2R1Y3RzfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600"
-            alt="Herbal Nature 3"
-            className="rounded-2xl shadow-lg w-full h-65 max-w-sm object-cover hover:scale-105 transition-transform duration-500"
-          />
+          
         </motion.div>
 
         {/* 🌱 Right Side - Contact Form + Details */}
@@ -50,17 +42,17 @@ const Contact = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 text-green-800">
             <div className="flex w-fit items-center space-x-3 bg-white p-4 rounded-lg shadow-md">
               <FaPhoneAlt className="text-green-700 text-xl" />
-              <span>+91 9876543210</span>
+              <span>+91 7869454574</span>
             </div>
             <div className="flex  w-fit items-center space-x-3 bg-white p-4 rounded-lg shadow-md">
               <FaRegEnvelope/>
-              <span>support@herbal.com</span>
+              <span>mykeshherbal@gmail.com</span>
             </div>
           </div>
           {/* Address below */}
           <div className="flex items-center w-fit space-x-3 bg-white p-4 rounded-lg shadow-md mb-8">
             <FaMapMarkerAlt className="text-green-700 text-xl" />
-            <span>123 Green Street, Wellness City</span>
+            <span>Madhya Pradesh India</span>
           </div>
 
           {/* Contact Form */}

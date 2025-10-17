@@ -1,66 +1,132 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // For page navigation
+import { motion } from "framer-motion";
 
 const Hero = () => {
-  const images = [
-    // "https://i.pinimg.com/736x/27/0a/43/270a4364058dcdd62781c8be950cccd7.jpg",
-    "https://i.pinimg.com/1200x/a9/cc/51/a9cc5175db9327a5b5065de33cdde151.jpg",
-    // "https://i.pinimg.com/1200x/77/10/ad/7710adbd47c5893e0042b2b97b872273.jpg",
-    "https://i.pinimg.com/1200x/1f/55/f6/1f55f612aa2d23dfb68b474b5ba728c2.jpg",
-    "https://i.pinimg.com/1200x/3a/ca/17/3aca1769221d7f8e1bacb8d969df27cc.jpg",
+  const mobileImages = [
+    "/hero/M1.jpg",
+    "/hero/M2.jpg",
+    "/hero/M3.jpg",
+    "/hero/M4.jpg",
+  ];
+  const tabletImages = [
+    "/hero/T1.jpg",
+    "/hero/T2.jpg",
+    "/hero/T3.jpg",
+    "/hero/T4.jpg",
+  ];
+  const desktopImages = [
+    "/hero/D1.jpg",
+    "/hero/D2.jpg",
+    "/hero/D3.jpg",
+    "/hero/D4.jpg",
   ];
 
   const [current, setCurrent] = useState(0);
-  const navigate = useNavigate();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  let images = desktopImages;
+  if (windowWidth < 640) images = mobileImages;
+  else if (windowWidth >= 640 && windowWidth < 1024) images = tabletImages;
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
-    }, 4000);
+    }, 7000); // Slide every 7 seconds
     return () => clearInterval(interval);
-  }, []);
+  }, [images]);
 
-  const handleShopNow = () => {
-    navigate("/products"); // redirect to product page
-  };
+  // Set container height based on screen size
+  let containerHeight = "h-[36.5vw]"; // Desktop/Laptop (3000x1094)
+  if (windowWidth < 640) containerHeight = "h-[108vw]"; // Mobile 1080x1080
+  else if (windowWidth >= 640 && windowWidth < 1024) containerHeight = "h-[50vw]"; // Tablet 1220x600
+
+  // Text for strips (duplicated for infinite scrolling effect)
+  const topStripText = [
+    "Get 25% off when you shop ₹999 or more ✨",
+    "Free shipping on orders above ₹1499 🚚",
+    "Limited time offer — grab it now! 💥",
+    "Get 25% off when you shop ₹999 or more ✨",
+    "Free shipping on orders above ₹1499 🚚",
+    "Get 25% off when you shop ₹999 or more ✨",
+    "Free shipping on orders above ₹1499 🚚",
+    "Limited time offer — grab it now! 💥",
+    "Get 25% off when you shop ₹999 or more ✨",
+    "Free shipping on orders above ₹1499 🚚",
+    "Get 25% off when you shop ₹999 or more ✨",
+    "Free shipping on orders above ₹1499 🚚",
+    "Limited time offer — grab it now! 💥",
+    "Get 25% off when you shop ₹999 or more ✨",
+    "Free shipping on orders above ₹1499 🚚",
+  ];
+
+  const bottomStripText = [
+    "No coupon needed — save money this Diwali Offer! 🪔",
+    "Shop our herbal hair care collection now! 🌿",
+    "Hurry! Limited stock available ⏰",
+    "No coupon needed — save money this Diwali Offer! 🪔",
+    "Shop our herbal hair care collection now! 🌿",
+    "No coupon needed — save money this Diwali Offer! 🪔",
+    "Shop our herbal hair care collection now! 🌿",
+    "Hurry! Limited stock available ⏰",
+    "No coupon needed — save money this Diwali Offer! 🪔",
+    "Shop our herbal hair care collection now! 🌿",
+    "No coupon needed — save money this Diwali Offer! 🪔",
+    "Shop our herbal hair care collection now! 🌿",
+    "Hurry! Limited stock available ⏰",
+    "No coupon needed — save money this Diwali Offer! 🪔",
+    "Shop our herbal hair care collection now! 🌿",
+  ];
 
   return (
-    <section
-      id="home"
-      className="relative h-[70vh] w-[90vw] mx-auto flex items-center justify-center text-center overflow-hidden rounded-2xl shadow-2xl"
-    >
-      {/* Background Slideshow */}
-      <div className="absolute inset-0 rounded-2xl overflow-hidden">
+    <section id="home" className="relative w-screen overflow-hidden">
+      {/* 🔶 Top Offer Strip */}
+      <div className="w-full bg-yellow-400 text-black py-2 overflow-hidden">
+        <motion.div
+          className="flex whitespace-nowrap font-semibold text-sm sm:text-base"
+          animate={{ x: ["0%", "-100%"] }}
+          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+        >
+          {topStripText.map((text, index) => (
+            <span key={index} className="mr-10">
+              {text}
+            </span>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* 🖼️ Background Slideshow */}
+      <div className={`relative w-screen ${containerHeight} my-2`}>
         {images.map((img, index) => (
           <img
             key={index}
             src={img}
-            alt="Herbal Background"
+            alt="Herbal Slide"
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-              index === current ? "opacity-70" : "opacity-0"
+              index === current ? "opacity-100" : "opacity-0"
             }`}
           />
         ))}
-        {/* Black gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/30"></div>
       </div>
 
-      {/* Highlighted Text Box */}
-      <div className="relative p-10 rounded-2xl text-white max-w-xl mx-auto">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-yellow-300 drop-shadow-[0_2px_5px_rgba(0,0,0,0.8)]">
-  Jadoo Ayurveda Ka, Pyaar Nature Ka 💚
-</h1>
-
-
-        <p className="mt-4 text-xl font-medium text-yellow-100 drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)]">
-          100% Herbal Haircare for strong, silky, and nourished hair — naturally!
-        </p>
-        <button
-          onClick={handleShopNow}
-          className="mt-6 px-8 py-3 bg-green-400 text-White-900 font-bold rounded-xl shadow-md hover:bg-white-300 hover:scale-105 transition-transform duration-300"
+      {/* 🔶 Bottom Offer Strip */}
+      <div className="w-full bg-yellow-400 text-black py-2 overflow-hidden">
+        <motion.div
+          className="flex whitespace-nowrap font-semibold text-sm sm:text-base"
+          animate={{ x: ["0%", "-100%"] }}
+          transition={{ repeat: Infinity, duration: 24, ease: "linear" }}
         >
-          Shop Now
-        </button>
+          {bottomStripText.map((text, index) => (
+            <span key={index} className="mr-10">
+              {text}
+            </span>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

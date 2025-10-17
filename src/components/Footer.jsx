@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
@@ -17,7 +18,7 @@ const Footer = () => {
         {/* 🌿 Brand Section - Left */}
         <div className="flex flex-col items-center md:items-start">
           <h2 className="text-3xl md:text-4xl font-extrabold text-yellow-300 tracking-wide">
-            HerbalHearts
+             Kesh Herbal
           </h2>
           <p className="text-sm md:text-base mt-4 text-green-200 leading-relaxed max-w-sm">
             Reviving nature’s goodness — pure, organic, and sustainable wellness.
@@ -74,8 +75,7 @@ const Footer = () => {
           <div className="flex space-x-4">
             {[{ icon: <FaFacebookF />, link: "#" },
               { icon: <FaTwitter />, link: "#" },
-              { icon: <FaInstagram />, link: "#" },
-              { icon: <FaLinkedinIn />, link: "#" }
+              { icon: <FaInstagram />, link: "http://keshherbal.in/" }
             ].map((social, index) => (
               <Link
                 key={index}
@@ -92,7 +92,8 @@ const Footer = () => {
       {/* 🌱 Bottom Bar */}
       <div className="mt-10 border-t border-green-600 text-center pt-5 text-sm text-green-200">
         © {new Date().getFullYear()}{" "}
-        <span className="text-yellow-300 font-medium">HerbalHearts</span>. All rights reserved.
+
+        <span className="text-yellow-300 font-medium">Kesh Herbal</span>. All rights reserved.
       </div>
     </motion.footer>
   );
