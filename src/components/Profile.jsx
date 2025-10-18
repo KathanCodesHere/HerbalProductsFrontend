@@ -1,24 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import { UserCircle } from "lucide-react"; // 👈 use an icon instead of image
+import { useAuth } from "../hooks/useAuth";
 
 const Profile = () => {
+  const { userProfile } = useAuth();
   const [profile, setProfile] = useState({
-    name: "Kathan Sahu",
-    email: "kathan@gmail.com",
-    mobile: "9876543210",
-    image: "https://via.placeholder.com/150",
+    name: "",
+    email: "",
+    mobile: "",
   });
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const res = await userProfile();
+        const profileObj = {
+          name: res.data.user.name,
+          email: res.data.user.email,
+          mobile: res.data.user.phone,
+        };
+        if (res) setProfile(profileObj);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchProfile();
+  }, []);
 
   const handleChange = (e) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setProfile({ ...profile, image: imageUrl });
-    }
   };
 
   const handleSubmit = (e) => {
@@ -40,30 +52,15 @@ const Profile = () => {
           My Profile 🌿
         </h2>
 
-        {/* Profile Picture */}
+        {/* Profile Icon */}
         <div className="flex flex-col items-center mb-6">
-          <div className="relative">
-            <motion.img
-              src={profile.image}
-              alt="Profile"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-              className="w-32 h-32 rounded-full object-cover border-4 border-green-500 shadow-lg"
-            />
-            <label
-              htmlFor="imageUpload"
-              className="absolute bottom-1 right-1 bg-green-500 text-white p-2 rounded-full cursor-pointer hover:bg-green-600 transition"
-            >
-              ✎
-            </label>
-            <input
-              id="imageUpload"
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={handleImageChange}
-            />
-          </div>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+            className="text-green-700  rounded-full p-4 border-green-500 "
+          >
+            <UserCircle size={96} />
+          </motion.div>
         </div>
 
         {/* Input Fields */}
@@ -112,7 +109,7 @@ const Profile = () => {
         </div>
 
         {/* Save Button */}
-        <div className="mt-8 text-center">
+        {/* <div className="mt-8 text-center">
           <motion.button
             type="submit"
             whileHover={{ scale: 1.05 }}
@@ -121,7 +118,7 @@ const Profile = () => {
           >
             Save Changes
           </motion.button>
-        </div>
+        </div> */}
       </motion.form>
     </div>
   );

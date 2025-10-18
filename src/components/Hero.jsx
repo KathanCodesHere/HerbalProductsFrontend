@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-
+import { useNavigate } from "react-router-dom";
 const Hero = () => {
   const mobileImages = [
     "/hero/M1.jpg",
@@ -83,6 +84,12 @@ const Hero = () => {
     "Shop our herbal hair care collection now! 🌿",
   ];
 
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/products");
+  };
+
   return (
     <section id="home" className="relative w-screen overflow-hidden">
       {/* 🔶 Top Offer Strip */}
@@ -101,7 +108,7 @@ const Hero = () => {
       </div>
 
       {/* 🖼️ Background Slideshow */}
-      <div className={`relative w-screen ${containerHeight} my-2`}>
+      <div className={`relative w-screen ${containerHeight} my-2`} onClick={handleClick}>
         {images.map((img, index) => (
           <img
             key={index}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {Link} from "react-router-dom"
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
@@ -55,7 +56,7 @@ export default function Navbar() {
 
       {/* Hamburger for mobile */}
       <button
-        className="md:hidden flex items-center text-[#023918] hover:text-yellow-400 transition-all duration-300"
+        className="md:hidden flex items-center text-[#023918] transition-all duration-300"
         onClick={toggleMenu}
       >
         <svg
