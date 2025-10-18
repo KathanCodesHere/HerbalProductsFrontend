@@ -1,11 +1,37 @@
 // src/pages/Products.jsx
-import React from "react";
-import productsData from "../../data/productsData";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+// import productsData from "../../data/productsData";
 import { FaStar, FaShoppingCart } from "react-icons/fa";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-
+import { useProducts } from "../../hooks/useProducts";
 const Products = () => {
+  const {loading, error, getAllProducts}=useProducts();
+  const [productsData, setProductsData] = useState([]);
+  const navigate = useNavigate();
+  useEffect(()=>{
+    const fetchAllProducts=async()=>{
+      try{
+        const res=await getAllProducts();
+        console.log(res);
+        setProductsData(res.data.items);
+        console.log(productsData);
+      }
+      catch(err){
+        console.log(err);
+      }
+    }
+    fetchAllProducts();
+  },[])
+
+  
+  const handleCardClick = (id) => {
+    navigate(`/products/${id}`);
+    console.log("we clicke ")
+    // navigate(`/productsid`);
+  };
+
   return (
     <section className="bg-green-50 py-10 px-6 sm:px-10">
       <div className="max-w-7xl mx-auto">
@@ -20,7 +46,8 @@ const Products = () => {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8" >
+
           {productsData.map((product) => (
             <motion.div
               key={product.id}
@@ -30,7 +57,7 @@ const Products = () => {
               {/* Product Image */}
               <div className="relative overflow-hidden">
                 <img
-                  src={product.image}
+                  src={product.image_url}
                   alt={product.name}
                   className="w-full h-84 object-cover transition-all duration-300 group-hover:border-4 group-hover:border-green-700"
                 />
@@ -53,11 +80,11 @@ const Products = () => {
               </div>
 
               {/* Product Info */}
-              <div className="p-4 text-center">
+              <div className="p-4 text-center" onClick={() => handleCardClick(product.id)}>
                 <h3 className="text-md font-semibold text-[#023918]">
                   {product.name}
                 </h3>
-
+                  
                 {/* Price Section */}
                 <div className="mt-3 flex items-center justify-center gap-2">
                   <span className="text-gray-500 line-through">

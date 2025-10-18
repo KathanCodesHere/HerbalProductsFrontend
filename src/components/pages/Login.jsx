@@ -1,19 +1,44 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuth } from "../../hooks/useAuth"; // direct hook import
 
 const Login = () => {
+  const { login, loading, error } = useAuth(); // ✅ directly use the hook
+  const navigate = useNavigate();
+
   const [showForgot, setShowForgot] = useState(false);
   const [email, setEmail] = useState("");
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // alert("Login successful 🌿 (demo)");
+  // handle input changes
+  const handleChange = (e) => {
+    // if (error) setError(null);
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
+  // handle login
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await login(credentials);
+      console.log("✅ Login successful:", res);
+      // if(res.data.)
+      if(res.message ==="Login successful"){
+        navigate('/');
+      }
+    } catch (err) {
+      console.error("❌ Login failed:", err);
+    }
+  };
+
+  // handle forgot password (placeholder)
   const handleForgot = (e) => {
     e.preventDefault();
-    // alert(Password reset link sent to ${email});
     setShowForgot(false);
   };
 
@@ -33,12 +58,23 @@ const Login = () => {
           Login to your Herbal Essence account
         </p>
 
+        {/* Error message */}
+        {error && (
+  <div className="text-red-600 bg-red-50 border border-red-200 rounded-lg p-2 mb-4 text-center text-sm">
+    {error}
+  </div>
+)}
+
+
         {/* Login Form */}
         <form onSubmit={handleLogin}>
           <label className="block mb-2 text-gray-700 font-medium">Email</label>
           <input
             type="email"
             required
+            name="email"
+            value={credentials.email}
+            onChange={handleChange}
             className="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-green-600"
             placeholder="Enter your email"
           />
@@ -49,6 +85,9 @@ const Login = () => {
           <input
             type="password"
             required
+            name="password"
+            value={credentials.password}
+            onChange={handleChange}
             className="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-green-600"
             placeholder="Enter your password"
           />
@@ -65,17 +104,21 @@ const Login = () => {
 
           <motion.button
             type="submit"
+            disabled={loading}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="w-full bg-green-700 text-white py-2 rounded-lg font-semibold hover:bg-green-800 transition"
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </motion.button>
         </form>
 
         <p className="text-center text-sm text-gray-600 mt-6">
           Don’t have an account?{" "}
-          <Link to="/signup" className="text-green-700 font-medium hover:underline">
+          <Link
+            to="/signup"
+            className="text-green-700 font-medium hover:underline"
+          >
             Register here
           </Link>
         </p>
@@ -85,7 +128,7 @@ const Login = () => {
       <AnimatePresence>
         {showForgot && (
           <motion.div
-            className="fixed inset-0 bg-black/40 flex items-center justify-center"
+            className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

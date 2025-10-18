@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import { FaWhatsapp } from "react-icons/fa";
 
 export default function MainLayout() {
-  const whatsappNumber = "919876543210"; // Replace with your number (without + or 0)
+  const whatsappNumber = "917869454574"; // Replace with your number (without + or 0)
   const whatsappLink = `https://wa.me/${whatsappNumber}`;
 
   return (

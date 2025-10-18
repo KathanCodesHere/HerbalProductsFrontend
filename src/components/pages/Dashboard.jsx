@@ -26,7 +26,7 @@ const Dashboard = () => {
       <div className="w-full md:w-1/4 bg-white shadow-md p-5 flex md:flex-col justify-around md:justify-start md:space-y-4">
         <button
           className={`px-4 py-2 rounded-md transition ${
-            selected === "profile" ? "bg-blue-500 text-white" : "hover:bg-blue-100"
+            selected === "profile" ? "bg-green-500 text-white" : "hover:bg-green-100"
           }`}
           onClick={() => setSelected("profile")}
         >
@@ -34,7 +34,7 @@ const Dashboard = () => {
         </button>
         <button
           className={`px-4 py-2 rounded-md transition ${
-            selected === "wishlist" ? "bg-blue-500 text-white" : "hover:bg-blue-100"
+            selected === "wishlist" ? "bg-green-500 text-white" : "hover:bg-green-100"
           }`}
           onClick={() => setSelected("wishlist")}
         >
@@ -42,7 +42,7 @@ const Dashboard = () => {
         </button>
         <button
           className={`px-4 py-2 rounded-md transition ${
-            selected === "cart" ? "bg-blue-500 text-white" : "hover:bg-blue-100"
+            selected === "cart" ? "bg-green-500 text-white" : "hover:bg-green-100"
           }`}
           onClick={() => setSelected("cart")}
         >

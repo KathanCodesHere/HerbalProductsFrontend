@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://your-api-url.com/api", // ✅ replace with your backend URL
+  baseURL: "https://herbal-6tab.onrender.com/api", // ✅ replace with your backend URL
   headers: {
     "Content-Type": "application/json",
   },
@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
 
 // Optional: Add an interceptor to attach JWT token automatically
 axiosInstance.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("accessToken");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }

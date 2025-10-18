@@ -1,5 +1,6 @@
 // src/components/ProductCard.jsx
 import React from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { FaStar, FaRegStar, FaShoppingCart } from "react-icons/fa";
@@ -9,6 +10,7 @@ const ProductCard = ({ product }) => {
 
   const handleCardClick = () => {
     // navigate(`/product/${product.id}`);
+    console.log("we clicke ")
     navigate(`/productsid`);
   };
 
@@ -22,7 +24,6 @@ const ProductCard = ({ product }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       viewport={{ once: true }}
-      onClick={handleCardClick}
       className="bg-white rounded-2xl shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl cursor-pointer flex flex-col text-center"
     >
       {/* Image Section */}
@@ -30,7 +31,8 @@ const ProductCard = ({ product }) => {
         <motion.img
           src={product.image}
           alt={product.name}
-          className="w-full h-56 object-cover rounded-t-2xl transition-transform duration-700 hover:scale-110"
+          className="w-full h-40 sm:h-48 md:h-56 object-cover rounded-t-2xl transition-transform duration-700 hover:scale-110"
+
           whileHover={{ rotate: 0.5, scale: 1.05 }}
           transition={{ type: "spring", stiffness: 120 }}
         />
@@ -40,8 +42,8 @@ const ProductCard = ({ product }) => {
       {/* Content Section */}
       <div className="p-5 flex flex-col flex-grow justify-between">
         <div>
-          <h3 className="text-2xl font-bold text-green-700">{product.name}</h3>
-          <p className="text-gray-600 text-sm mt-2 line-clamp-2">{product.description}</p>
+          {/* <h3 className="text-xl font-bold text-green-700">{product.name}</h3> */}
+          {/* <p className="text-gray-600 text-sm mt-2 line-clamp-2">{product.description}</p> */}
 
           {product.ingredients && (
             <p className="text-sm text-gray-500 mt-3">
