@@ -9,6 +9,7 @@ import Contact from "./components/pages/Contact";
 import ParticularProducts from "./components/pages//ParticularProducts";
 import Dashboard from "./components/pages/Dashboard";
 import About from './components/pages/About'
+import AdminDash from "./components/pages/AdminDash";
 
 export default function App() {
   return (
@@ -24,6 +25,9 @@ export default function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ParticularProducts />} />
           <Route path="/dashboard" element={<Dashboard />}/>
+          <Route path="/admin" element={<AdminDash />}/>
+           {/* Admin routes */}
+          <Route path="/admin/*" element={<AdminDash />} />
         </Route>
       </Routes>
     </BrowserRouter>
