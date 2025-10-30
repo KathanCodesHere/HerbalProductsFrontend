@@ -1,6 +1,6 @@
 // src/hooks/useAuth.js
 import { useState } from "react";
-import { getAllProductService } from "../services/productService";
+import { getAllProductService,getSingleProductService } from "../services/productService";
 
 export const useProducts = () => {
 
@@ -21,7 +21,21 @@ export const useProducts = () => {
       setLoading(false);
     }
   };
+   // 🔐 get single product
+  const getSingleProduct = async (add) => {
+    try {
+      setLoading(true);
+      const data = await getSingleProductService(add);
+      setError(null);
+      return data;
+    } catch (err) {
+      setError(err.response?.data?.message || "products loading failed");
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
 
 
-  return { loading, error, getAllProducts};
+  return { loading, error, getAllProducts, getSingleProduct};
 };

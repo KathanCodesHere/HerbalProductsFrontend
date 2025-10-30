@@ -1,7 +1,8 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { IoClose } from "react-icons/io5";
 
-const SideBarA = () => {
+const SideBarA = ({ closeSidebar }) => {
   const { pathname } = useLocation();
 
   const links = [
@@ -12,14 +13,26 @@ const SideBarA = () => {
   ];
 
   return (
-    <aside className="w-64 bg-[#023918] text-white p-6 flex flex-col">
-      <h2 className="text-2xl font-bold mb-8">Admin Dashboard</h2>
+    <aside className="h-full bg-[#023918] text-white flex flex-col p-6 shadow-lg">
+      {/* Mobile header */}
+      <div className="flex items-center justify-between mb-6 md:mb-8">
+        <h2 className="text-2xl font-bold">Admin Dashboard</h2>
+        <button
+          className="md:hidden text-2xl"
+          onClick={closeSidebar}
+        >
+          <IoClose />
+        </button>
+      </div>
+
+      {/* Navigation links */}
       <nav className="flex flex-col gap-3">
         {links.map((link) => (
           <Link
             key={link.path}
             to={link.path}
-            className={`p-3 rounded-lg hover:bg-[#1C941E] transition ${
+            onClick={closeSidebar}
+            className={`p-3 rounded-lg transition-all duration-200 hover:bg-[#1C941E] ${
               pathname === link.path ? "bg-[#1C941E]" : ""
             }`}
           >
@@ -27,6 +40,11 @@ const SideBarA = () => {
           </Link>
         ))}
       </nav>
+
+      {/* Footer */}
+      <div className="mt-auto text-center text-sm opacity-70 pt-4 border-t border-green-800">
+        © 2025 Admin Panel
+      </div>
     </aside>
   );
 };
