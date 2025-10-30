@@ -3,9 +3,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import CreateProduct from "../admin/CreateProduct";
 import CreateCategory from "../admin/CreateCategory";
 import Orders from "../admin/Orders";
-import Users from "../admin/Users";
 import SideBarA from "../admin/SideBarA";
 import { FiMenu } from "react-icons/fi";
+import AllCategories from "../admin/AllCategories";
 
 const AdminDash = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -49,7 +49,7 @@ const AdminDash = () => {
             <Route path="create-product" element={<CreateProduct />} />
             <Route path="create-category" element={<CreateCategory />} />
             <Route path="orders" element={<Orders />} />
-            <Route path="users" element={<Users />} />
+            <Route path="allcat" element={<AllCategories />} />
           </Routes>
         </main>
       </div>

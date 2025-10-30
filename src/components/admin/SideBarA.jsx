@@ -9,7 +9,7 @@ const SideBarA = ({ closeSidebar }) => {
     { name: "Create Product", path: "/admin/create-product" },
     { name: "Create Category", path: "/admin/create-category" },
     { name: "User Orders", path: "/admin/orders" },
-    { name: "All Users", path: "/admin/users" },
+    { name: "All Categories", path: "/admin/allcat" },
   ];
 
   return (
