@@ -40,6 +40,7 @@ export const useAuth = () => {
       const data = await loginService(credentials);
       localStorage.setItem("accessToken", data.data.tokens.accessToken);
       localStorage.setItem("user", JSON.stringify(data.data.user));
+      window.dispatchEvent(new Event("userChange"));
       setUser(data.data.user);
       setError(null);
       return data;

@@ -1,21 +1,35 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import { useLocation } from 'react-router-dom';
+import { useProducts } from '../../hooks/useProducts';
 const ParticularProducts = () => {
-    const product = {
-    name: "Aloe Vera Herbal Shampoo",
-    image:
-      "https://www.kaynahealthcare.com/uploads/gallery_images/product_gallery1694079843Herbal_Shampoo_%28Ingredients%29.jpg",
-    price: "₹399",
-    description:
-      "Experience the pure essence of Aloe Vera with our 100% herbal shampoo. It gently cleanses your scalp, strengthens roots, and leaves your hair silky smooth. Free from parabens, sulfates, and artificial fragrance.",
-    benefits: [
-      "Hydrates dry scalp",
-      "Prevents dandruff",
-      "Adds natural shine",
-      "Promotes hair growth",
-    ],
-  };
+  const { getSingleProduct, loading, error } = useProducts();
+  const location = useLocation();
+  const [product,setProduct]=useState({});
+  const currentPath = location.pathname;
+    useEffect(()=>{
+  // Access the pathname property
+      const fetchData=async()=>{
+        const data=await getSingleProduct(currentPath);
+        setProduct(data.data.product);
+      }
+      fetchData();
+    },[]);
+  //   const product = {
+  //   name: "Aloe Vera Herbal Shampoo",
+  //   image:
+  //     "https://www.kaynahealthcare.com/uploads/gallery_images/product_gallery1694079843Herbal_Shampoo_%28Ingredients%29.jpg",
+  //   price: "₹399",
+  //   description:
+  //     "Experience the pure essence of Aloe Vera with our 100% herbal shampoo. It gently cleanses your scalp, strengthens roots, and leaves your hair silky smooth. Free from parabens, sulfates, and artificial fragrance.",
+  //   benefits: [
+  //     "Hydrates dry scalp",
+  //     "Prevents dandruff",
+  //     "Adds natural shine",
+  //     "Promotes hair growth",
+  //   ],
+  // };
   return (
     <div className="min-h-screen bg-green-50 flex flex-col items-center py-12 px-6 font-sans">
       {/* Product Card */}
@@ -27,7 +41,7 @@ const ParticularProducts = () => {
       >
         {/* Product Image */}
         <motion.img
-          src={product.image}
+          src={product.image_url}
           alt={product.name}
           className="w-full md:w-1/2 rounded-2xl shadow-lg"
           whileHover={{ scale: 1.05 }}
@@ -70,11 +84,11 @@ const ParticularProducts = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            {product.benefits.map((b, i) => (
+            {/* {product.benefits.map((b, i) => (
               <li key={i} className="mt-1">
                 {b}
               </li>
-            ))}
+            ))} */}
           </motion.ul>
 
           {/* Buttons */}
@@ -82,7 +96,7 @@ const ParticularProducts = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition"
+              className="bg-white text-green-700 border px-6 py-3 rounded-lg hover:bg-green-800 hover:text-white transition"
             >
               Add to Cart
             </motion.button>
@@ -90,7 +104,7 @@ const ParticularProducts = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border border-green-700 text-green-700 px-6 py-3 rounded-lg hover:bg-green-700 hover:text-white transition"
+              className="border bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-700 hover:text-white transition"
             >
               Buy Now
             </motion.button>

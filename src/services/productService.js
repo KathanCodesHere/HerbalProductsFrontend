@@ -5,3 +5,8 @@ export const getAllProductService = async () => {
   const response = await axiosInstance.get("/products?page=1&limit=10");
   return response.data;
 };
+
+export const getSingleProductService = async (add) => {
+  const response = await axiosInstance.get(`${add}`);
+  return response.data;
+};
