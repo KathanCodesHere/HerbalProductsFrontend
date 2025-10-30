@@ -1,6 +1,6 @@
 // src/hooks/useAuth.js
 import { useState } from "react";
-import { getAllProductService,getSingleProductService } from "../services/productService";
+import { getAllProductService,getSingleProductService,addtoCartService } from "../services/productService";
 
 export const useProducts = () => {
 
@@ -36,6 +36,20 @@ export const useProducts = () => {
     }
   };
 
+  // add to cart
+  const addToCart = async (add) => {
+    try {
+      setLoading(true);
+      const data = await addtoCartService(add);
+      setError(null);
+      return data;
+    } catch (err) {
+      setError(err.response?.data?.message || "add to cart failed");
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  return { loading, error, getAllProducts, getSingleProduct};
+  return { loading, error, getAllProducts, getSingleProduct, addToCart};
 };

@@ -5,20 +5,6 @@ const AllCategories = () => {
 
   const [categories,setCategories]=useState([]);
   const {getAllCategoryAd}=useAdmin();
-//   const categories = [
-//     {
-//       id: 3,
-//       name: "Shampoo",
-//       description: "Here are the best Shampoo herbal",
-//       created_at: "2025-10-30T19:51:27.870637",
-//     },
-//     {
-//       id: 2,
-//       name: "Herbal Teas",
-//       description: "Natural herbal tea blends",
-//       created_at: "2025-10-16T12:38:04.509889",
-//     },
-//   ];
     useEffect(()=>{
         const fetchData=async()=>{
             console.log("fetch data method");

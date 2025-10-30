@@ -10,3 +10,8 @@ export const getSingleProductService = async (add) => {
   const response = await axiosInstance.get(`${add}`);
   return response.data;
 };
+
+export const addtoCartService = async (credentials) => {
+  const response = await axiosInstance.post("/cart", credentials);
+  return response.data;
+};
