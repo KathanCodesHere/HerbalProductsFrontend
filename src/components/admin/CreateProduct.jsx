@@ -10,7 +10,7 @@ const CreateProduct = () => {
     price: "",
     category_id: "",
     brand_id: "",
-    quantity: "",
+    stock: "",
     image_url: "",
     is_active: true,
   });
@@ -99,10 +99,10 @@ const CreateProduct = () => {
         {/* Quantity */}
         <input
           type="number"
-          name="quantity"
-          placeholder="Quantity"
+          name="stock"
+          placeholder="stock"
           className="border p-3 sm:p-4 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-[#1C941E]"
-          value={product.quantity}
+          value={product.stock}
           onChange={handleChange}
         />
 

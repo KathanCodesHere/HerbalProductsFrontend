@@ -15,7 +15,7 @@ const OrderNow = () => {
           <ol className="list-decimal text-left mx-auto inline-block space-y-2 pl-5">
             <li>Scan the QR code shown below.</li>
             <li>Make your payment securely.</li>
-            <li>After payment, fill out the order form with your details.</li>
+            <li>After payment, Click on the Whatsapp icon to book this product.</li>
           </ol>
         </div>
 
@@ -34,12 +34,12 @@ const OrderNow = () => {
         </div>
 
         {/* Proceed Button */}
-        <button
+        {/* <button
           className="mt-4 bg-[#1C941E] text-white px-8 py-3 rounded-lg font-medium text-base sm:text-lg hover:bg-[#167718] transition-all duration-300"
           onClick={() => alert('Redirecting to form...')}
         >
           Proceed
-        </button>
+        </button> */}
       </div>    
     </div>
   );

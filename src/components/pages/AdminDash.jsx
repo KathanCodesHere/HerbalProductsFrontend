@@ -6,6 +6,7 @@ import Orders from "../admin/Orders";
 import SideBarA from "../admin/SideBarA";
 import { FiMenu } from "react-icons/fi";
 import AllCategories from "../admin/AllCategories";
+import ProductList from "../admin/ProductsList";
 
 const AdminDash = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -50,6 +51,7 @@ const AdminDash = () => {
             <Route path="create-category" element={<CreateCategory />} />
             <Route path="orders" element={<Orders />} />
             <Route path="allcat" element={<AllCategories />} />
+            <Route path="allprod" element={<ProductList />} />
           </Routes>
         </main>
       </div>

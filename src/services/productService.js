@@ -11,7 +11,12 @@ export const getSingleProductService = async (add) => {
   return response.data;
 };
 
-export const addtoCartService = async (credentials) => {
-  const response = await axiosInstance.post("/cart", credentials);
+export const deleteProductService = async (id) => {
+  const response = await axiosInstance.delete(`/products/${id}`);
+  return response.data;
+};
+
+export const updateProductService = async (id,formdata) => {
+  const response = await axiosInstance.put(`/products/${id}`,formdata);
   return response.data;
 };

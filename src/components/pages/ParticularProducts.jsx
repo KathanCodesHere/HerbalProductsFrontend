@@ -3,7 +3,12 @@ import React,{useState,useEffect} from 'react'
 import { motion } from "framer-motion";
 import { useLocation } from 'react-router-dom';
 import { useProducts } from '../../hooks/useProducts';
+import { useNavigate } from "react-router-dom";
 const ParticularProducts = () => {
+   const navigate = useNavigate();
+    const handleBuyNow=()=>{
+      navigate('/ordernow')
+    }
   const { getSingleProduct, loading, error } = useProducts();
   const location = useLocation();
   const [product,setProduct]=useState({});
@@ -74,7 +79,7 @@ const ParticularProducts = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            {product.price}
+            ₹{product.price}
           </motion.div>
 
           {/* Benefits List */}
@@ -93,15 +98,16 @@ const ParticularProducts = () => {
 
           {/* Buttons */}
           <div className="flex gap-4 mt-8">
-            <motion.button
+            {/* <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-white text-green-700 border px-6 py-3 rounded-lg hover:bg-green-800 hover:text-white transition"
             >
               Add to Cart
-            </motion.button>
+            </motion.button> */}
 
             <motion.button
+              onClick={handleBuyNow}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="border bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-700 hover:text-white transition"

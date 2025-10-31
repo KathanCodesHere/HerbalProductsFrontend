@@ -7,7 +7,6 @@ import { FaUserCircle } from "react-icons/fa";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null);
-
   const toggleMenu = () => setIsOpen(!isOpen);
 
   // ✅ Load user initially + update when storage changes or event fires
@@ -18,7 +17,7 @@ export default function Navbar() {
     };
 
     loadUser(); // on mount
-
+    
     // Listen for manual login/logout events
     window.addEventListener("userChange", loadUser);
 
@@ -31,6 +30,8 @@ export default function Navbar() {
     };
   }, []);
 
+  
+    
   return (
     <nav className="bg-gray-100 text-[#023918] px-6 py-4 flex justify-between items-center shadow-lg top-0 z-50 sticky">
       {/* 🌿 Logo */}
@@ -64,7 +65,7 @@ export default function Navbar() {
       <div className="hidden md:flex items-center space-x-6">
         {user ? (
           <Link
-            to="/dashboard"
+            to={user.role === "admin" ? "/admin" : "/dashboard"}
             className="text-3xl text-[#023918] hover:text-green-700 transition-all duration-300"
             title="Profile"
           >
@@ -96,7 +97,7 @@ export default function Navbar() {
       <div className="md:hidden flex items-center gap-3">
         {user && (
           <Link
-            to="/dashboard"
+             to={user.role === "admin" ? "/admin" : "/dashboard"}
             className="text-3xl text-[#023918] hover:text-green-700 transition-all duration-300"
           >
             <FaUserCircle />

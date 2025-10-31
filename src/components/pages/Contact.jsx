@@ -56,7 +56,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <form className="bg-white p-6 rounded-2xl shadow-md">
+          {/* <form className="bg-white p-6 rounded-2xl shadow-md">
             <div className="mb-4">
               <label className="block text-gray-700 font-semibold mb-2">Name</label>
               <input
@@ -87,7 +87,7 @@ const Contact = () => {
             >
               Send Message
             </button>
-          </form>
+          </form> */}
         </motion.div>
       </div>
     </section>

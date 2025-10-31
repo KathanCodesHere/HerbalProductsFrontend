@@ -7,7 +7,7 @@ const AllCategories = () => {
   const {getAllCategoryAd}=useAdmin();
     useEffect(()=>{
         const fetchData=async()=>{
-            console.log("fetch data method");
+            // console.log("fetch data method");
             try{
                 const data=await getAllCategoryAd();
                 // console.log(data.data.categories);
