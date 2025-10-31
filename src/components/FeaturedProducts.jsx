@@ -1,6 +1,6 @@
 import React from "react";
 import { FaStar, FaStarHalfAlt, FaRegStar, FaShoppingCart } from "react-icons/fa";
-
+import { useNavigate } from "react-router-dom";
 const products = [
   {
     id: 1,
@@ -15,6 +15,10 @@ const products = [
 ];
 
 const FeaturedProducts = () => {
+  const navigate = useNavigate();
+  const handleBuyNow=()=>{
+    navigate('/ordernow')
+  }
   return (
     <section className="py-16 bg-white">
       <h2 className="text-3xl sm:text-5xl md:text-4xl font-extrabold text-center text-[#023918] mb-14 drop-shadow-sm">
@@ -86,13 +90,13 @@ const FeaturedProducts = () => {
 
               {/* Buttons */}
               <div className="flex flex-wrap gap-4 mt-6">
-                <button className="bg-[#1C941E] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#187A18] transition w-fit">
+                <button onClick={handleBuyNow} className="bg-[#1C941E] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#187A18] transition w-fit">
                   Buy Now
                 </button>
-                <button className="flex items-center gap-2 bg-[#023918] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#035022] transition w-fit">
+                {/* <button className="flex items-center gap-2 bg-[#023918] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#035022] transition w-fit">
                   <FaShoppingCart />
                   Add to Cart
-                </button>
+                </button> */}
               </div>
             </div>
           </div>

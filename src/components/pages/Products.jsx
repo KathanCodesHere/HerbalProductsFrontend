@@ -7,10 +7,10 @@ import { FaStar, FaShoppingCart } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useProducts } from "../../hooks/useProducts";
 const Products = () => {
-  const {loading, error, getAllProducts,addToCart}=useProducts();
+  const {loading, error, getAllProducts}=useProducts();
   const [productsData, setProductsData] = useState([]);
-  const storedUser = localStorage.getItem("user");
-  const [cartData,setCartData]=useState({});
+  // const storedUser = localStorage.getItem("user");
+  // const [cartData,setCartData]=useState({});
   const navigate = useNavigate();
   useEffect(()=>{
     const fetchAllProducts=async()=>{
@@ -27,31 +27,7 @@ const Products = () => {
     fetchAllProducts();
   },[])
 
-  const handleCart=async(id)=>{
-    if(!storedUser){
-      console.log("login first");
-    }
-    else{
-      console.log("added to cart",id);
-      setCartData(
-        {
-        "product_id":id,
-        "quantity":1
-        }
-      )
-      console.log(cartData);
-      try{
-        // correct the route then run this
-        // const data=await addToCart(cartData);
-        // console.log(data);
-      }
-      catch(err){
-        console.log(err)
-      }
-    }
-    
-
-  }
+  
 
   const handleBuy=()=>{
     // console.log("order now");
@@ -105,9 +81,9 @@ const Products = () => {
                   <button onClick={handleBuy} className="bg-[#023918] text-white text-sm px-4 py-2 rounded-lg shadow-md hover:bg-[#1C941E] transition">
                     Buy Now
                   </button>
-                  <button onClick={()=>handleCart(product.id)}  className="bg-white text-[#023918] text-sm px-4 py-2 rounded-lg shadow-md border border-green-700 hover:bg-green-100 flex items-center justify-center gap-2 transition">
+                  {/* <button  className="bg-white text-[#023918] text-sm px-4 py-2 rounded-lg shadow-md border border-green-700 hover:bg-green-100 flex items-center justify-center gap-2 transition">
                     <FaShoppingCart /> Add to Cart
-                  </button>
+                  </button> */}
                 </div>
               </div>
 

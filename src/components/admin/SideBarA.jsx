@@ -2,6 +2,8 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 
+import { useNavigate } from "react-router-dom";
+
 const SideBarA = ({ closeSidebar }) => {
   const { pathname } = useLocation();
 
@@ -10,7 +12,16 @@ const SideBarA = ({ closeSidebar }) => {
     { name: "Create Category", path: "/admin/create-category" },
     { name: "User Orders", path: "/admin/orders" },
     { name: "All Categories", path: "/admin/allcat" },
+    { name: "Products List", path: "/admin/allprod" },
   ];
+  const navigate = useNavigate();
+  // ✅ Logout function
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("user");
+    window.dispatchEvent(new Event("userChange"));
+    navigate("/"); // redirect to home
+  };
 
   return (
     <aside className="h-full bg-[#023918] text-white flex flex-col p-6 shadow-lg">
@@ -39,6 +50,13 @@ const SideBarA = ({ closeSidebar }) => {
             {link.name}
           </Link>
         ))}
+        <button
+          onClick={handleLogout}
+          className="mt-4 md:mt-auto px-4 py-2 rounded-md font-medium text-red-600 border border-red-400 
+                     hover:bg-red-500 hover:text-white transition-all duration-300"
+        >
+          Logout
+        </button>
       </nav>
 
       {/* Footer */}

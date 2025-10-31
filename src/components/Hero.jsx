@@ -5,18 +5,18 @@ import { useNavigate } from "react-router-dom";
 const Hero = () => {
   const mobileImages = [
     "/hero/M1.jpg",
-    "/hero/M2.jpg",
+    // "/hero/M2.jpg",
     "/hero/M3.jpg",
     "/hero/M4.jpg",
   ];
   const tabletImages = [
-    "/hero/T1.jpg",
+    // "/hero/T1.jpg",
     "/hero/T2.jpg",
     "/hero/T3.jpg",
     "/hero/T4.jpg",
   ];
   const desktopImages = [
-    "/hero/D1.jpg",
+    // "/hero/D1.jpg",
     "/hero/D2.jpg",
     "/hero/D3.jpg",
     "/hero/D4.jpg",
