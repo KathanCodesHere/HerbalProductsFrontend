@@ -15,3 +15,12 @@ export const getAllCategoryService = async () => {
   return response.data; 
 };
 
+export const deleteCategoryService = async (id) => {
+  const response = await axiosInstance.delete(`/categories/${id}`);
+  return response.data; 
+};
+
+export const updateCategoryService = async (id,data) => {
+  const response = await axiosInstance.delete(`/categories/${id}`,data);
+  return response.data; 
+};

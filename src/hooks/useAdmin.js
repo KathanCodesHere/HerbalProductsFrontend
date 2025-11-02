@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createProductService, createCategoryService, getAllCategoryService } from "../services/adminService";
+import { createProductService, createCategoryService, getAllCategoryService, deleteCategoryService,updateCategoryService } from "../services/adminService";
 
 export const useAdmin = () => {
   const [loading, setLoading] = useState(false);
@@ -50,5 +50,35 @@ export const useAdmin = () => {
     }
   };
 
-  return { loading, error, createProductAd, createCategoryAd, getAllCategoryAd };
+  //delete category
+  const deleteCategoryAd = async (id) => {
+    try {
+      setLoading(true);
+      const data = await deleteCategoryService(id);
+      setError(null);
+      return data;
+    } catch (err) {
+      setError(err.response?.data?.message || "deletion failed");
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  //update category
+  const updateCategoryAd = async (id) => {
+    try {
+      setLoading(true);
+      const data = await updateCategoryService(id);
+      setError(null);
+      return data;
+    } catch (err) {
+      setError(err.response?.data?.message || "creating deletion failed");
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { loading, error, createProductAd, createCategoryAd, getAllCategoryAd,deleteCategoryAd,updateCategoryAd };
 };
