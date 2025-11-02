@@ -11,23 +11,7 @@ const Cart = () => {
       quantity: 1,
       image:
         "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=400&h=400&fit=crop",
-    },
-    {
-      id: 2,
-      name: "Organic Neem Face Wash",
-      price: 249,
-      quantity: 2,
-      image:
-        "https://images.unsplash.com/photo-1585386959984-a4155224a1e1?w=400&h=400&fit=crop",
-    },
-    {
-      id: 3,
-      name: "Aloe Vera Gel",
-      price: 199,
-      quantity: 1,
-      image:
-        "https://images.unsplash.com/photo-1611078489935-0cb964de46f2?w=400&h=400&fit=crop",
-    },
+    }
   ]);
 
   // Increase quantity

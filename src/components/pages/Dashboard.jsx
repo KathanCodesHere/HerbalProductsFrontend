@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Profile from "../Profile";
-import Wishlist from "../Wishlist";
+// import Wishlist from "../Wishlist";
 import Cart from "../Cart";
+import UserOrders from "../UserOrders";
+
 
 const Dashboard = () => {
   const [selected, setSelected] = useState("profile");
@@ -22,10 +24,12 @@ const Dashboard = () => {
     switch (selected) {
       case "profile":
         return <Profile />;
-      case "wishlist":
-        return <Wishlist />;
+      // case "wishlist":
+      //   return <Wishlist />;
       case "cart":
         return <Cart />;
+      case "orders":
+        return <UserOrders/>
       default:
         return <Profile />;
     }
@@ -46,7 +50,7 @@ const Dashboard = () => {
           Profile
         </button>
 
-        <button
+        {/* <button
           className={`px-4 py-2 rounded-md transition ${
             selected === "wishlist"
               ? "bg-green-500 text-white"
@@ -55,7 +59,7 @@ const Dashboard = () => {
           onClick={() => setSelected("wishlist")}
         >
           Wishlist
-        </button>
+        </button> */}
 
         <button
           className={`px-4 py-2 rounded-md transition ${
@@ -66,6 +70,16 @@ const Dashboard = () => {
           onClick={() => setSelected("cart")}
         >
           Cart
+        </button>
+        <button
+          className={`px-4 py-2 rounded-md transition ${
+            selected === "orders"
+              ? "bg-green-500 text-white"
+              : "hover:bg-green-100"
+          }`}
+          onClick={() => setSelected("orders")}
+        >
+          My Orders
         </button>
 
         {/* ✅ Logout Button */}
