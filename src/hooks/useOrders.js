@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { placeOrderService } from "../services/orderService";
+import { placeOrderService,getAllOrdersService } from "../services/orderService";
 
 export const useOrders = () => {
   const [loading, setLoading] = useState(false);
@@ -20,7 +20,21 @@ export const useOrders = () => {
     }
   };
 
-  
+ 
+  //create Products
+  const getAllOrders = async () => {
+    try {
+      setLoading(true);
+      const data = await getAllOrdersService();
+      setError(null);
+      return data;
+    } catch (err) {
+      setError(err.response?.data?.message || "get all orders failed");
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  return { loading, error, placeOrder };
+  return { loading, error, placeOrder,getAllOrders};
 };

@@ -10,3 +10,7 @@ export const placeOrderService = async (userData) => {
   return response.data;
 };
 
+export const getAllOrdersService = async () => {
+  const response = await axiosInstance.get("/orders/all?page=1&limit=10");
+  return response.data;
+};

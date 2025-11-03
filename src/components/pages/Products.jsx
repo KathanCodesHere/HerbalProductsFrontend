@@ -31,7 +31,7 @@ const Products = () => {
 
   const handleBuy=()=>{
     // console.log("order now");
-    navigate('/ordernow')
+    navigate('/orderItem')
   };
   
   const handleCardClick = (id) => {
