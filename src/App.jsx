@@ -10,6 +10,7 @@ import Dashboard from "./components/pages/Dashboard";
 import About from './components/pages/About'
 import AdminDash from "./components/pages/AdminDash";
 import OrderNow from "./components/pages/OrderNow";
+import OrderItem from "./components/pages/OrderItem";
 
 export default function App() {
   return (
@@ -29,6 +30,8 @@ export default function App() {
           <Route path="/admin" element={<AdminDash />}/>
            {/* Admin routes */}
           <Route path="/admin/*" element={<AdminDash />} />
+          <Route path="/orderItem" element={<OrderItem />} />
+
         </Route>
       </Routes>
     </BrowserRouter>

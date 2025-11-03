@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const OrderNow = () => {
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center bg-white px-4 py-10">
@@ -40,6 +40,7 @@ const OrderNow = () => {
         >
           Proceed
         </button> */}
+        <Link className="mt-4 bg-[#1C941E] text-white px-8 py-3 rounded-lg font-medium text-base sm:text-lg hover:bg-[#167718] transition-all duration-300" to='/orderItem'>Proceed</Link>
       </div>    
     </div>
   );
