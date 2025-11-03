@@ -2,10 +2,21 @@ import React, { useState, useEffect } from "react";
 import { PlusCircleIcon, TrashIcon } from "lucide-react";
 import { useProducts } from "../../hooks/useProducts";
 import { useOrders } from "../../hooks/useOrders";
+import { useNavigate } from "react-router-dom";
+import OrderNow from "./OrderNow";
 const OrderItem = () => {
   const { getAllProducts } = useProducts();
   const { loading, error, placeOrder } = useOrders();
   const [productOptions, setProductOptions] = useState([]);
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+    const user = localStorage.getItem('user');
+    if(!user){
+      navigate('/login');
+    }
+  },[])
+
 
   useEffect(() => {
     const fetchAllProducts = async () => {
@@ -23,13 +34,17 @@ const OrderItem = () => {
     { product_id: "", price: 0, quantity: 1 },
   ]);
 
-  const handleProductChange = (index, selectedProduct) => {
-    const updatedItems = [...orderItems];
-    const product = productOptions.find((p) => p.name === selectedProduct);
-    updatedItems[index].product = selectedProduct;
-    updatedItems[index].price = product ? product.price : 0;
-    setOrderItems(updatedItems);
-  };
+  const handleProductChange = (index, selectedId) => {
+  const updatedItems = [...orderItems];
+  const product = productOptions.find((p) => p.id === Number(selectedId));
+
+  updatedItems[index].product_id = Number(selectedId);
+  updatedItems[index].price = product ? product.price : 0;
+  updatedItems[index].product = product ? product.name : "";
+
+  setOrderItems(updatedItems);
+};
+
 
   const handleQuantityChange = (index, quantity) => {
     const updatedItems = [...orderItems];
@@ -47,27 +62,26 @@ const OrderItem = () => {
   };
 
   const handlePlaceOrder = async () => {
-    try {
-      // Filter out any empty product rows
-      const validItems = orderItems;
+  try {
+    const validItems = orderItems.filter((item) => item.product_id && item.quantity > 0);
 
-      const orderData = {
-        items: validItems.map((item) => ({
-          product_id: item.product_id,
-          quantity: item.quantity,
-          price: item.price,
-        })),
-        status: "pending",
-      };
+    const orderData = {
+      items: validItems.map((item) => ({
+        product_id: item.product_id,
+        quantity: item.quantity,
+        price: item.price,
+      })),
+      status: "pending",
+    };
 
-      console.log("🟢 Sending order data:", orderData);
+    console.log("🟢 Sending order data:", orderData);
+    const data = await placeOrder(orderData);
+    console.log("✅ Order placed:", data);
+  } catch (err) {
+    console.log("❌ Error placing order:", err);
+  }
+};
 
-      const data = await placeOrder(orderData);
-      console.log("✅ Order placed:", data);
-    } catch (err) {
-      console.log("❌ Error placing order:", err);
-    }
-  };
 
   const totalPrice = orderItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -92,19 +106,18 @@ const OrderItem = () => {
                 Product
               </label>
               <select
-                value={item.product}
-                onChange={(e) =>
-                  handleProductChange(index, e.target.value)
-                }
-                className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-green-500 outline-none"
-              >
-                <option value="">Select a product</option>
-                {productOptions.map((p) => (
-                  <option key={p.name} value={p.name}>
-                    {p.name}
-                  </option>
-                ))}
-              </select>
+  value={item.product_id}
+  onChange={(e) => handleProductChange(index, e.target.value)}
+  className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-green-500 outline-none"
+>
+  <option value="">Select a product</option>
+  {productOptions.map((p) => (
+    <option key={p.id} value={p.id}>
+      {p.name}
+    </option>
+  ))}
+</select>
+
             </div>
 
             {/* Price Display */}
@@ -152,8 +165,11 @@ const OrderItem = () => {
                 <TrashIcon size={22} />
               </button>
             )}
+
           </div>
+          
         ))}
+
       </div>
 
       {/* Add new item button */}
@@ -180,6 +196,7 @@ const OrderItem = () => {
           Place Order
         </button>
       </div>
+      <OrderNow/>
     </div>
   );
 };

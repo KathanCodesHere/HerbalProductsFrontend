@@ -40,7 +40,7 @@ const OrderNow = () => {
         >
           Proceed
         </button> */}
-        <Link className="mt-4 bg-[#1C941E] text-white px-8 py-3 rounded-lg font-medium text-base sm:text-lg hover:bg-[#167718] transition-all duration-300" to='/orderItem'>Proceed</Link>
+        {/* <Link className="mt-4 bg-[#1C941E] text-white px-8 py-3 rounded-lg font-medium text-base sm:text-lg hover:bg-[#167718] transition-all duration-300" to='/orderItem'>Proceed</Link> */}
       </div>    
     </div>
   );
